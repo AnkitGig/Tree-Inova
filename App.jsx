@@ -23,7 +23,7 @@ const Header = () => {
       <div className="container">
         <div className="nav-brand">
           <div className="logo" onClick={() => handlePageChange("home")}>
-            <div className="logo-icon">🌳</div>
+            <img src="/images/treeinova-logo.png" alt="TreeInova Logo" className="logo-image" />
             <span className="logo-text">TreeInova</span>
           </div>
         </div>
@@ -61,12 +61,35 @@ const Header = () => {
           </a>
         </nav>
         <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
+          ☰
         </button>
       </div>
     </header>
+  )
+
+  function renderCurrentPage() {
+    switch (currentPage) {
+      case "home":
+        return <HomePage />
+      case "about":
+        return <AboutPage />
+      case "services":
+        return <ServicesPage />
+      case "portfolio":
+        return <PortfolioPage />
+      case "contact":
+        return <ContactPage />
+      default:
+        return <HomePage />
+    }
+  }
+
+  return (
+    <div className="App">
+      <Header />
+      {renderCurrentPage()}
+      <Footer />
+    </div>
   )
 }
 
@@ -78,7 +101,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-brand">
             <div className="logo">
-              <div className="logo-icon">🌳</div>
+              <img src="/images/treeinova-logo.png" alt="TreeInova Logo" className="logo-image" />
               <span className="logo-text">TreeInova</span>
             </div>
             <p>
@@ -125,7 +148,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2024 TreeInova. All rights reserved. | Crafted with ❤️ by TreeInova Team</p>
+          <p>&copy; 2024 DevStudio. All rights reserved. | Crafted with ❤️ by DevStudio Team</p>
         </div>
       </div>
     </footer>
@@ -155,7 +178,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header />
+      <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
       {renderCurrentPage()}
       <Footer />
     </div>
